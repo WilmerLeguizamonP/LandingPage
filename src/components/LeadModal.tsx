@@ -54,6 +54,7 @@ const LeadModal = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<LeadForm>({
     resolver: zodResolver(leadSchema),
@@ -245,7 +246,7 @@ const LeadModal = () => {
                         <label className="flex items-start space-x-3 cursor-pointer">
                           <input
                             type="checkbox"
-                            {...register('consentimiento')}
+                            onChange={(e) => setValue('consentimiento', e.target.checked as true)}
                             aria-required="true"
                             aria-invalid={!!errors.consentimiento}
                             className="mt-0.5 w-4 h-4 accent-orange shrink-0 focus:ring-2 focus:ring-orange rounded"
