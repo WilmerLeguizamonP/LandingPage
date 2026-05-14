@@ -24,9 +24,7 @@ const leadSchema = z.object({
   proyecto: z.string().max(100).optional(),
   
   // Consentimiento obligatorio (Ley 1581)
-  consentimiento: z.literal(true, {
-    errorMap: () => ({ message: 'Debe aceptar el tratamiento de datos' })
-  }),
+  consentimiento: z.literal(true, { error: 'Debe aceptar el tratamiento de datos' }),
 });
 
 // ── Rate limiting en memoria (reemplazar con Upstash en producción) ───────────

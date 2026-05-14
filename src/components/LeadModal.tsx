@@ -32,9 +32,7 @@ const leadSchema = z.object({
   tipo: z.enum(['Empresa', 'Persona independiente']),
 
   // Ley 1581
-  consentimiento: z.literal(true, {
-    errorMap: () => ({ message: 'Debe aceptar el tratamiento de datos' }),
-  }),
+  consentimiento: z.literal(true, { error: 'Debe aceptar el tratamiento de datos' }),
 });
 
 type LeadForm = z.infer<typeof leadSchema>;

@@ -33,9 +33,7 @@ const contactSchema = z.object({
   proyecto: z.string().optional(),
 
   // Ley 1581 — consentimiento explícito obligatorio
-  consentimiento: z.literal(true, {
-    errorMap: () => ({ message: 'Debe aceptar el tratamiento de datos para continuar' }),
-  }),
+  consentimiento: z.literal(true, { error: 'Debe aceptar el tratamiento de datos para continuar' }),
 });
 
 type ContactForm = z.infer<typeof contactSchema>;
