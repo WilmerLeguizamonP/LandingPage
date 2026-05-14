@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@theme {
+  --color-black: #0f172a;
+  --color-dark: #1e293b;
+  --color-darkgray: #334155;
+  --color-orange: #f97316;
+  --color-orange-dark: #ea6f0a;
+  --color-gold: #eab308;
+  --color-border: #e2e8f0;
+  --font-outfit: var(--font-outfit);
+  --font-inter: var(--font-inter);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-slate-900;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-sm;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-linear-to-br from-orange to-orange-dark;
+  }
+
+  .btn-primary {
+    @apply px-6 py-3 rounded-lg bg-linear-to-br from-orange to-orange-dark text-white font-bold transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange/30 active:translate-y-0;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 rounded-lg bg-white border border-slate-200 text-slate-900 font-semibold transition-all hover:border-orange hover:text-orange hover:-translate-y-0.5;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-32;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-slate-200/50 border border-slate-100;
+  }
+}
+
+.glow-orange {
+  box-shadow: 0 0 30px rgba(249, 115, 22, 0.15), 0 0 60px rgba(249, 115, 22, 0.05);
+}
+
+.grid-overlay {
+  background-image: 
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+}

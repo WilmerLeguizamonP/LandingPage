@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Cambiado de sqlite a postgresql para producción
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  nombre    String
+  correo    String
+  telefono  String
+  empresa   String?
+  tipo      String   // Empresa / Persona independiente
+  mensaje   String?
+  origen    String   // Modal / Formulario Inferior
+  proyecto  String?
+  fecha     DateTime @default(now())
+  estado    String   @default("Nuevo") // Nuevo, Contactado, Descartado
+
+  @@index([fecha])
+  @@index([estado])
+}
+
+model Project {
+  id          String   @id @default(cuid())
+  titulo      String
+  descripcion String
+  categoria   String
+  entidad     String?
+  ubicacion   String
+  estado      String   // ejecutado / en ejecución
+  imagen      String?
+  tipo_imagen String?  @default("real")
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([categoria])
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String   // bcrypt hash — nunca texto plano
+  role      String   @default("admin")
+  createdAt DateTime @default(now())
+}
