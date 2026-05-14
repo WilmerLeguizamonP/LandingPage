@@ -45,11 +45,11 @@ const Contact = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<ContactForm>({
     resolver: zodResolver(contactSchema),
   });
-
   const onSubmit = async (data: ContactForm) => {
     setServerError('');
     try {
@@ -278,12 +278,12 @@ const Contact = () => {
                   )}
                 </div>
 
-                {/* ── Consentimiento Ley 1581 ── */}
+               {/* ── Consentimiento Ley 1581 ── */}
                 <div className="space-y-1">
                   <label className="flex items-start space-x-3 cursor-pointer group">
                     <input
                       type="checkbox"
-                      {...register('consentimiento')}
+                      onChange={(e) => setValue('consentimiento', e.target.checked as true)}
                       aria-required="true"
                       aria-describedby={errors.consentimiento ? 'consent-error' : undefined}
                       aria-invalid={!!errors.consentimiento}
